@@ -3,6 +3,19 @@ export type Service = {
   title: string;
   excerpt: string;
   heroImage: string;
+  heroEyebrow?: string;
+  cta?: string;
+  sections?: {
+    heading: string;
+    body: string[];
+    image?: string;
+    imageAlt?: string;
+    imageRight?: boolean;
+  }[];
+  faqs?: {
+    q: string;
+    a: string;
+  }[];
   bullets: string[];
 };
 
@@ -20,6 +33,52 @@ export const SERVICES: Service[] = [
     title: "Engine Repair & Overhaul",
     excerpt: "Complete diagnostics and overhaul for heavy-duty diesel engines.",
     heroImage: "/gallery/placeholder-1.jpg",
+    heroEyebrow: "Heavy-Duty Powertrains",
+    cta: "Schedule an Engine Assessment",
+    sections: [
+      {
+        heading: "Diagnostic Deep Dive",
+        body: [
+          "We start every engine repair with advanced computer diagnostics and hands-on inspection to pinpoint issues fast.",
+          "From coolant leaks to injector failures, our team documents every finding so you know exactly what needs attention.",
+        ],
+        image: "/gallery/placeholder-2.jpg",
+        imageAlt: "Technician running engine diagnostics",
+      },
+      {
+        heading: "In-Shop Overhauls",
+        body: [
+          "Full in-frame and out-of-frame rebuilds are completed with OEM-spec torque procedures and component traceability.",
+          "We coordinate machining, cleaning, and reassembly to return your unit to service-ready condition quickly.",
+        ],
+        image: "/gallery/placeholder-3.jpg",
+        imageAlt: "Engine components laid out on workbench",
+        imageRight: true,
+      },
+      {
+        heading: "Break-In & Verification",
+        body: [
+          "Before hand-off, every engine goes through fluid checks, road tests, and post-service scan reports.",
+          "You receive a break-in plan and maintenance schedule tailored to your duty cycle.",
+        ],
+        image: "/gallery/placeholder-4.jpg",
+        imageAlt: "Truck undergoing final inspection",
+      },
+    ],
+    faqs: [
+      {
+        q: "How long does an overhaul usually take?",
+        a: "Standard in-frame overhauls average 7-10 business days depending on parts availability and machining requirements.",
+      },
+      {
+        q: "Do you offer warranty coverage?",
+        a: "Yes, complete engine rebuilds include a 12-month/100,000 km craftsmanship warranty with extended options on request.",
+      },
+      {
+        q: "Can you service fleet units on-site?",
+        a: "Our mobile team handles inspections and minor repairs; major overhauls are completed in-shop for quality control.",
+      },
+    ],
     bullets: [
       "Computer diagnostics",
       "In-frame & out-of-frame overhauls",

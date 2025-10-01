@@ -7,7 +7,9 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main>
-      <Hero />
+      <section className="-mt-20">
+        <Hero />
+      </section>
 
       <section className="mx-auto max-w-6xl px-4 py-12 grid gap-8 md:grid-cols-2 items-center">
         <FadeIn>

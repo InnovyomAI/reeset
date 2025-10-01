@@ -4,7 +4,7 @@ import { FadeInStagger } from "@/components/Effects";
 
 export default function Hero() {
   return (
-    <section className="relative flex h-[80vh] items-center justify-center bg-gradient-to-r from-blue to-red text-white">
+    <section className="relative flex h-[80vh] items-center justify-center bg-gradient-to-r from-blue to-red text-white pt-20">
       <FadeInStagger>
         <div className="text-center">
           <h1 className="text-4xl font-bold md:text-6xl">Keeping Trucks Moving</h1>

@@ -1,9 +1,15 @@
 import Link from "next/link";
 import { BRANDS } from "@/lib/data";
 
-export default function BrandPills() {
+type BrandPillsProps = {
+  className?: string;
+};
+
+export default function BrandPills({ className }: BrandPillsProps) {
   return (
-    <aside className="rounded border border-gray bg-white p-4 shadow-sm">
+    <aside
+      className={`rounded border border-gray bg-white p-4 shadow-sm${className ? ` ${className}` : ""}`}
+    >
       <h4 className="mb-3 font-semibold text-blue">Vehicles We Service</h4>
       <div className="flex flex-wrap gap-2">
         {BRANDS.map((brand) => (

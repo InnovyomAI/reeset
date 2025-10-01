@@ -1,13 +1,25 @@
+import Image from "next/image";
 import Link from "next/link";
 import { SERVICES } from "@/lib/data";
 
 export default function Header() {
   return (
-    <header className="bg-blue text-white sticky top-0 z-50">
-      <div className="mx-auto flex max-w-7xl items-center justify-between p-4">
-        <h1 className="text-xl font-bold text-red">REESET</h1>
+    <header className="bg-white text-blue sticky top-0 z-50 h-20 shadow-md flex items-center relative">
+      <div className="mx-auto flex max-w-7xl items-center justify-between w-full px-6">
+        {/* Logo */}
+        <Link href="/" aria-label="Home" className="flex items-center h-full">
+          <Image
+            src="/logo.jpg"
+            alt="REESET Truck & Trailer Ltd."
+            width={180}
+            height={80}
+            className="h-full w-auto"
+          />
+        </Link>
+
+        {/* Navigation */}
         <nav>
-          <ul className="flex items-center gap-6">
+          <ul className="flex items-center gap-6 font-medium">
             <li>
               <Link href="/" className="hover:text-green">
                 Home
@@ -30,11 +42,10 @@ export default function Header() {
                   <li key={service.slug}>
                     <Link
                       href={`/services/${service.slug}`}
-                      className="block px-4 py-2 text-blue-900 hover:bg-blue-100"
+                      className="block px-4 py-2 hover:bg-blue-100"
                     >
                       {service.title}
                     </Link>
-
                   </li>
                 ))}
               </ul>
@@ -52,6 +63,12 @@ export default function Header() {
           </ul>
         </nav>
       </div>
+
+      {/* Blurred bottom boundary */}
+      <div
+        aria-hidden="true"
+        className="absolute bottom-[-8px] left-0 w-full h-6 bg-white blur-md pointer-events-none"
+      />
     </header>
   );
 }

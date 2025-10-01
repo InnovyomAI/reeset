@@ -5,6 +5,7 @@ export default function Footer() {
         <p className="text-sm">
           © {new Date().getFullYear()} REESET Truck & Trailer Ltd. All rights reserved.
         </p>
+        <p className="text-sm text-white/80 mt-1">Created and designed by Innovyom AI Solutions</p>
       </div>
     </footer>
   );
