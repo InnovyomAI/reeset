@@ -1,7 +1,7 @@
-import Image from "next/image";
-import Link from "next/link";
-import { notFound } from "next/navigation";
-import { FadeIn } from "@/components/Effects";
+import BrandPills from "@/components/BrandPills";
+import { CTAContactBand } from "@/components/CTAContactBand";
+import { ServiceHero } from "@/components/ServiceHero";
+import { ServiceSection } from "@/components/ServiceSection";
 import { BRANDS, SERVICES } from "@/lib/data";
 
 export async function generateStaticParams() {
@@ -18,42 +18,39 @@ export async function generateMetadata({ params }: { params: Promise<{ make: str
 export default async function Page({ params }: { params: Promise<{ make: string }> }) {
   const { make } = await params;
   const brand = BRANDS.find((entry) => entry.slug === make);
-  if (!brand) return notFound();
+  if (!brand) return <div>Brand not found</div>;
+
+  const servicesForBrand = SERVICES.map(
+    (service) => `${service.title} - ${service.excerpt}`
+  );
 
   return (
-    <main className="mx-auto max-w-6xl px-4 py-12">
-      <section className="grid items-center gap-8 md:grid-cols-2">
-        <FadeIn>
-          <div>
-            <h1 className="text-3xl font-bold text-red">{brand.name} Service</h1>
-            <p className="mt-4 text-lg text-blue">{brand.blurb}</p>
-          </div>
-        </FadeIn>
-        <FadeIn>
-          <Image
-            src={brand.heroImage}
-            alt={`${brand.name} truck`}
-            width={720}
-            height={480}
-            className="rounded shadow-md"
-          />
-        </FadeIn>
-      </section>
-
-      <section className="mt-12">
-        <h2 className="mb-4 text-2xl font-semibold text-blue">Services We Offer</h2>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {SERVICES.map((service) => (
-            <Link
-              key={service.slug}
-              href={`/services/${service.slug}`}
-              className="rounded border border-gray bg-white p-4 text-blue hover:bg-gray"
-            >
-              {service.title}
-            </Link>
-          ))}
+    <main>
+      <section className="bg-white py-8">
+        <div className="mx-auto max-w-6xl px-4">
+          <BrandPills />
         </div>
       </section>
+
+      <ServiceHero title={brand.name} excerpt={brand.blurb} heroImage={brand.heroImage} />
+
+      <section className="max-w-6xl mx-auto px-4 py-16">
+        <div className="grid gap-8 lg:grid-cols-3">
+          <div className="space-y-12 lg:col-span-2">
+            <ServiceSection heading={`Services for ${brand.name}`} body={servicesForBrand} />
+          </div>
+          <div className="lg:col-span-1">
+            <div className="sticky top-24">
+              <BrandPills className="top-24" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <CTAContactBand
+        headline={`Need ${brand.name} expertise?`}
+        description="Tell us about your fleet and we'll follow up with a tailored service plan."
+      />
     </main>
   );
 }

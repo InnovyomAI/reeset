@@ -52,9 +52,6 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                 key={`${section.heading}-${index}`}
                 heading={section.heading}
                 body={section.body}
-                image={section.image}
-                imageAlt={section.imageAlt}
-                imageRight={section.imageRight}
               />
             ))}
 
